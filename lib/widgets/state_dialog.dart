@@ -18,17 +18,54 @@ class _StateDialogState extends State<StateDialog> {
   @override
   void initState() {
     super.initState();
-    AppWishState.values.forEach((element) {
-      print(element.toString().replaceAll("AppWishState.", ""));
-    });
-    print(this.widget.wish.state);
-    state = AppWishState.values.firstWhere((element) =>
-        element.toString().replaceAll("AppWishState.", "") ==
-        this.widget.wish.state);
+    state = stringToWishState(this.widget.wish.state);
     title = state == AppWishState.NUEVA ? "Asignar Deseo" : "Cambiar estado";
   }
 
-  _toAssingWish() {}
+  _toAssingWish() {
+    BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
+      id: widget.wish.id,
+      title: widget.wish.title,
+      description: widget.wish.description,
+      type: widget.wish.type,
+      project: widget.wish.project,
+      date: widget.wish.date,
+      assigned: user,
+      author: widget.wish.author,
+      state: wishStateToString(AppWishState.ABIERTA),
+    )));
+    Navigator.pop(context);
+  }
+
+  _toStartWish() {
+    BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
+      id: widget.wish.id,
+      title: widget.wish.title,
+      description: widget.wish.description,
+      type: widget.wish.type,
+      project: widget.wish.project,
+      date: widget.wish.date,
+      assigned: widget.wish.assigned,
+      author: widget.wish.author,
+      state: wishStateToString(AppWishState.EN_PROCESO),
+    )));
+    Navigator.pop(context);
+  }
+
+  _toEndWish() {
+    BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
+      id: widget.wish.id,
+      title: widget.wish.title,
+      description: widget.wish.description,
+      type: widget.wish.type,
+      project: widget.wish.project,
+      date: widget.wish.date,
+      assigned: widget.wish.assigned,
+      author: widget.wish.author,
+      state: wishStateToString(AppWishState.CERRADA),
+    )));
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,24 +102,26 @@ class _StateDialogState extends State<StateDialog> {
               ),
             ],
             if (state != AppWishState.NUEVA) ...[
-              if (state == AppWishState.ABIERTA) Container(
-                width: 200,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: _toAssingWish,
-                  child: Text("Iniciar"),
+              if (state == AppWishState.ABIERTA)
+                Container(
+                  width: 200,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: _toStartWish,
+                    child: Text("Iniciar"),
+                  ),
                 ),
-              ),
               if (state == AppWishState.ABIERTA) SizedBox(height: 10),
-              Container(
+              if (state != AppWishState.CERRADA) Container(
                 width: 200,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: _toAssingWish,
+                  onPressed: _toEndWish,
                   child: Text("Terminar"),
                 ),
               ),
-            ]
+            ],
+            if (state == AppWishState.CERRADA) Text("La tarea ya está cerrada.")
           ]),
         )
       ],

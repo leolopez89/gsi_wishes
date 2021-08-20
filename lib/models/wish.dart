@@ -1,4 +1,5 @@
 class Wish {
+  String id;
   String title;
   String description;
   String type;
@@ -9,6 +10,7 @@ class Wish {
   String state;
 
   Wish({
+    this.id = "",
     this.title = "",
     this.description = "",
     this.type = "",
@@ -22,6 +24,7 @@ class Wish {
   @override
   String toString() {
     return {
+      "id": this.id,
       "title": this.title,
       "description": this.description,
       "type": this.type,

@@ -21,6 +21,12 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   @override
+  void initState() {
+    BlocProvider.of<AppBloc>(context).add(LoadApp());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -39,6 +39,23 @@ enum AppWishState {
   EN_PROCESO,
   CERRADA,
 }
+
+String wishStateToString(AppWishState value) {
+  return value.toString().replaceAll("AppWishState.", "");
+}
+
+List<String> wishStateToList() {
+  return AppWishState.values
+      .map((element) => wishStateToString(element))
+      .toList();
+}
+
+AppWishState stringToWishState(String cad) {
+  return AppWishState.values.firstWhere(
+      (element) => element.toString().replaceAll("AppWishState.", "") == cad,
+      orElse: () => AppWishState.NUEVA);
+}
+
 const List<String> APP_WISH_STATE = <String>[
   "Nueva",
   "Abierta",

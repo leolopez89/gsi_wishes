@@ -15,7 +15,7 @@ class AddWish extends AppEvent {
   AddWish(this.wish);
 }
 
-class UpdateWish extends AppEvent {
+class UpdateWishState extends AppEvent {
   final Wish wish;
-  UpdateWish(this.wish);
+  UpdateWishState(this.wish);
 }

@@ -17,8 +17,8 @@ class AppState {
   AppState updateWish(Wish wish) => AppState(
         user: this.user,
         wishes: [
-          ...this.wishes.where((element) => element.title != wish.title),
-          wish
+          wish,
+          ...this.wishes.where((element) => element.id != wish.id),
         ],
       );
 }

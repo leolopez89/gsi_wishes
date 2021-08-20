@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gsi_wishes/bloc/app/app_bloc.dart';
 import 'package:gsi_wishes/models/wish.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
+import 'package:uuid/uuid.dart';
 
 class CreationPage extends StatefulWidget {
   const CreationPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _CreationPageState extends State<CreationPage> {
     wish = new Wish(
       type: APP_WISH_TYPE.first,
       project: APP_PROJECT_NAME.first,
-      state: AppWishState.NUEVA.toString(),
+      state: wishStateToList().first,
       author: APP_USERS.firstWhere((element) => element.contains("Project")),
     );
   }
@@ -32,6 +33,8 @@ class _CreationPageState extends State<CreationPage> {
     print(wish.toString());
 
     if (form != null && form.validate()) {
+      var uuid = Uuid();
+      wish.id = uuid.v1();
       BlocProvider.of<AppBloc>(context).add(AddWish(wish));
       Navigator.pop(context);
     }
@@ -114,7 +117,7 @@ class _CreationPageState extends State<CreationPage> {
                 DropdownSimple(
                   saveValue: (value) => setState(() => this.wish.state = value),
                   value: this.wish.state,
-                  items: AppWishState.values.map((e) => e.toString()).toList(),
+                  items: wishStateToList(),
                 ),
               ],
             ),
