@@ -8,19 +8,21 @@ Lista de Deseos colaborativa.
 
 La aplicación muestra tres tipos de usuarios
 
-- Project Manager (PM)
-- Group Manager (GM)
-- Miembro (M)
+- Project Manager
+- Group Manager
+- Member
 
 Al iniciar se puede seleccionar el tipo de usuario con el que se va a trabajar.
 
-El Rol `PM` puede crear `Deseos`, así como asignarlos, iniciarlos y terminarlos.
+El Rol `Project Manager` puede crear `Deseos`, así como asignarlos, iniciarlos y terminarlos.
 
-El Rol `GM` puede asignar `Deseos`, iniciarlos y termiarlos.
+El Rol `Group Manager` puede asignar `Deseos`, iniciarlos y termiarlos.
 
-El Rol `M` solo ve los `Deseos` que le han asignado, puede iniarlos y termiarlos.
+El Rol `Member` solo ve los `Deseos` que le han asignado, puede iniarlos y termiarlos.
 
-Los roles una vez terminados no se pueden modificar más.
+Los Deseos solo se pueden asignar al Rol `Member`.
+
+Los Deseos, una vez terminados no se pueden modificar más.
 
 ## Datos de prueba
 

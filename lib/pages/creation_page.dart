@@ -113,38 +113,28 @@ class _CreationPageState extends State<CreationPage> {
                   controller: dateController,
                   validator: emptyValidator,
                 ),
-                SectionTitle(title: "Estado"),
-                DropdownSimple(
-                  saveValue: (value) => setState(() => this.wish.state = value),
-                  value: this.wish.state,
-                  items: wishStateToList(),
+                // SectionTitle(title: "Estado"),
+                // DropdownSimple(
+                //   saveValue: (value) => setState(() => this.wish.state = value),
+                //   value: this.wish.state,
+                //   items: wishStateToList(),
+                // ),
+                SizedBox(height: 20),
+                Container(
+                  constraints: BoxConstraints(maxWidth: 500),
+                  height: 40,
+                  margin: EdgeInsets.all(20),
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _addWish,
+                    child: Text("Crear deseo"),
+                  ),
                 ),
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          constraints: BoxConstraints(maxWidth: 500),
-          height: 40,
-          margin: EdgeInsets.all(20),
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: _addWish,
-            child: Text("Crear deseo"),
-          ),
-        ),
-      ),
     );
   }
 }
-
-// Titulo
-// Descripción
-// Tipo
-// Proyecto
-// Fecha
-// Responsable
-// Author
-// Estado

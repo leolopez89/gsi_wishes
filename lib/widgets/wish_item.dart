@@ -112,7 +112,7 @@ class WishItem extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  "Creado por ${this.wish.author}",
+                  "Autor: ${this.wish.author}",
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.black87,
@@ -124,7 +124,6 @@ class WishItem extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  constraints: BoxConstraints(minWidth: 200),
                   child: ElevatedButton(
                     onPressed: () => showDialog(
                       context: context,

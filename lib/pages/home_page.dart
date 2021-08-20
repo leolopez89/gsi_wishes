@@ -38,7 +38,10 @@ class _HomePageState extends State<HomePage> {
               Spacer(),
               Icon(Icons.person),
               SizedBox(width: 5),
-              Text(state.user),
+              Text(
+                state.user.contains("Project") ? "PM" : (state.user.contains("Group") ? "GM" : "M"),
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ),

@@ -32,7 +32,7 @@ class InputSimple extends StatelessWidget {
         minLines: minLines,
         maxLines: maxLines,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 15),
+          contentPadding: EdgeInsets.all(10),
           hintStyle: const TextStyle(color: C_APP_COLOR, fontSize: 15),
           fillColor: Colors.white,
           filled: true,
