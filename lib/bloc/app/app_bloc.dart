@@ -13,8 +13,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   @override
   Stream<AppState> mapEventToState(AppEvent event) async* {
     if (event is LoadApp) {
-      List<Wish> wishes = loadTestData();
-      yield (AppState(wishes: wishes));
+      // List<Wish> wishes = loadTestData();
+      // yield (AppState(wishes: wishes));
     } else if (event is AddWish) {
       yield state.copyWith(wish: event.wish);
     } else if (event is ChangeUser) {
