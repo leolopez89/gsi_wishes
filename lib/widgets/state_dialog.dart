@@ -1,5 +1,6 @@
 part of 'widgets.dart';
 
+/// Modal dialog widget to change the state of a [Wish]
 class StateDialog extends StatefulWidget {
   final Wish wish;
 
@@ -22,6 +23,7 @@ class _StateDialogState extends State<StateDialog> {
     title = state == AppWishState.NUEVA ? "Asignar Deseo" : "Cambiar estado";
   }
 
+  /// To assing the [Wish] to an user, the state is changed to [AppWishState.ABIERTA]
   _toAssingWish() {
     BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
       id: widget.wish.id,
@@ -37,6 +39,7 @@ class _StateDialogState extends State<StateDialog> {
     Navigator.pop(context);
   }
 
+  /// To change the state of a [Wish] to [AppWishState.EN_PROCESO]
   _toStartWish() {
     BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
       id: widget.wish.id,
@@ -52,6 +55,7 @@ class _StateDialogState extends State<StateDialog> {
     Navigator.pop(context);
   }
 
+  /// To change the state of a [Wish] to [AppWishState.CERRADA]
   _toEndWish() {
     BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
       id: widget.wish.id,

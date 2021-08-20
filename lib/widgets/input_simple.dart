@@ -1,5 +1,8 @@
 part of 'widgets.dart';
 
+/// Text input widget
+/// 
+/// A widget with outline colored borders
 class InputSimple extends StatelessWidget {
   final ValueSetter saveValue;
   final int minLines;

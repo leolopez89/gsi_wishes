@@ -12,6 +12,7 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
+  /// To select the user who will use the app
   selectUser(String user) {
     BlocProvider.of<AppBloc>(context).add(ChangeUser(user));
     Navigator.push(

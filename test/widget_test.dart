@@ -20,7 +20,7 @@ class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 void main() {
   testWidgets('Check fist page', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(WishApp());
 
     // Verify that start page is user select.
     expect(find.text('Seleccionar el usuario'), findsOneWidget);
@@ -67,7 +67,7 @@ void main() {
 
   testWidgets('Check members count', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(WishApp());
 
     expect(find.textContaining('Member'), findsNWidgets(2));
   });

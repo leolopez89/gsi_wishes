@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  /// To go to the wish creation page
   void _addTask() {
     Navigator.push(
       context,

@@ -6,11 +6,10 @@ import 'package:gsi_wishes/pages/users_page.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(WishApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class WishApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([

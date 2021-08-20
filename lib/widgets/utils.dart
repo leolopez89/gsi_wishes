@@ -1,5 +1,6 @@
 part of 'widgets.dart';
 
+/// Main app [MaterialColor]
 const MaterialColor maAppColor = MaterialColor(
   appPrimaryValue,
   <int, Color>{
@@ -15,9 +16,14 @@ const MaterialColor maAppColor = MaterialColor(
     900: Color(0xFF0A5666),
   },
 );
+
+/// App base [int] color
 const int appPrimaryValue = 0xFF2094AD;
+
+/// App base [Color]
 const Color cAppColor = Color(appPrimaryValue);
 
+/// The list of [Wish] types
 const List<String> appWishType = <String>[
   "Onat",
   "Inventario",
@@ -26,6 +32,7 @@ const List<String> appWishType = <String>[
   "Transporte",
 ];
 
+/// The list of [Wish] project types
 const List<String> appProjectName = <String>[
   "Proyecto 1",
   "Proyecto 2",
@@ -33,6 +40,7 @@ const List<String> appProjectName = <String>[
   "Proyecto 4",
 ];
 
+/// The states of a [Wish]
 enum AppWishState {
   NUEVA,
   ABIERTA,
@@ -40,22 +48,26 @@ enum AppWishState {
   CERRADA,
 }
 
+/// [String] value of AppWishState
 String wishStateToString(AppWishState value) {
   return value.toString().replaceAll("AppWishState.", "");
 }
 
+/// [List] of values of AppWishState converted to [String]
 List<String> wishStateToList() {
   return AppWishState.values
       .map((element) => wishStateToString(element))
       .toList();
 }
 
+/// AppWishState equivalent value of a [String]
 AppWishState stringToWishState(String cad) {
   return AppWishState.values.firstWhere(
       (element) => element.toString().replaceAll("AppWishState.", "") == cad,
       orElse: () => AppWishState.NUEVA);
 }
 
+/// [List] of user in the app
 const List<String> appUsers = <String>[
   "Project Manager",
   "Group Manager",

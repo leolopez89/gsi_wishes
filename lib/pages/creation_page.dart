@@ -38,6 +38,7 @@ class _CreationPageState extends State<CreationPage> {
     }
   }
 
+  /// To hide the keyboard and show the date picker
   onDateTap() async {
     FocusScope.of(context).requestFocus(new FocusNode());
     DateTime initial = DateTime.parse(dateController.text.isNotEmpty
@@ -57,6 +58,7 @@ class _CreationPageState extends State<CreationPage> {
     }
   }
 
+  /// [String] if the values is not empty, null in other case
   String? emptyValidator(String? value) {
     if ((value ?? "").toString().isEmpty) return "Debe proporcionar un valor";
     return null;

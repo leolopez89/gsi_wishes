@@ -1,5 +1,8 @@
 part of 'widgets.dart';
 
+/// Dropdown widget
+/// 
+/// A widget with outline colored borders
 class DropdownSimple extends StatelessWidget {
   final ValueSetter saveValue;
   final int minLines;

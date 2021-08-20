@@ -1,5 +1,6 @@
 part of 'widgets.dart';
 
+/// Custom [Text] widget 
 class SectionTitle extends StatelessWidget {
   final String title;
   const SectionTitle({

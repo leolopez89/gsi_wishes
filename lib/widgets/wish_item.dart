@@ -1,5 +1,6 @@
 part of 'widgets.dart';
 
+/// The [Wish] presentation widget
 class WishItem extends StatelessWidget {
   final Wish wish;
   const WishItem(this.wish, {Key? key}) : super(key: key);
