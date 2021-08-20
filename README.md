@@ -26,7 +26,7 @@ Los Deseos, una vez terminados no se pueden modificar más.
 
 ## Datos de prueba
 
-La aplicación cuenta con unos datos de prueba que pueden activarse en descomentando las lineas 11 y 17 en [app_bloc.dart](https://github.com/leolopez89/gsi_wishes/blob/master/lib/bloc/app/app_bloc.dart#L16-L17)
+La aplicación cuenta con unos datos de prueba que pueden activarse en descomentando las lineas 16 y 17 en [app_bloc.dart](https://github.com/leolopez89/gsi_wishes/blob/master/lib/bloc/app/app_bloc.dart#L16-L17)
 
 ## Comentarios
 
