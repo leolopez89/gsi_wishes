@@ -11,21 +11,21 @@ class StateDialog extends StatefulWidget {
 
 class _StateDialogState extends State<StateDialog> {
   String user = APP_USERS.firstWhere((element) => element.contains("Member"));
-  AppState state = AppState.NUEVA;
+  AppWishState state = AppWishState.NUEVA;
   String title = "Asignar Deseo";
   String section = "Seleccionar miembro";
 
   @override
   void initState() {
     super.initState();
-    AppState.values.forEach((element) {
-      print(element.toString().replaceAll("AppState.", ""));
+    AppWishState.values.forEach((element) {
+      print(element.toString().replaceAll("AppWishState.", ""));
     });
     print(this.widget.wish.state);
-    state = AppState.values.firstWhere((element) =>
-        element.toString().replaceAll("AppState.", "") ==
+    state = AppWishState.values.firstWhere((element) =>
+        element.toString().replaceAll("AppWishState.", "") ==
         this.widget.wish.state);
-    title = state == AppState.NUEVA ? "Asignar Deseo" : "Cambiar estado";
+    title = state == AppWishState.NUEVA ? "Asignar Deseo" : "Cambiar estado";
   }
 
   _toAssingWish() {}
@@ -45,7 +45,7 @@ class _StateDialogState extends State<StateDialog> {
         Container(
           margin: EdgeInsets.all(20),
           child: Column(children: [
-            if (state == AppState.NUEVA) ...[
+            if (state == AppWishState.NUEVA) ...[
               SectionTitle(title: "Seleccionar miembro"),
               DropdownSimple(
                 saveValue: (value) => setState(() => user = value),
@@ -64,8 +64,8 @@ class _StateDialogState extends State<StateDialog> {
                 ),
               ),
             ],
-            if (state != AppState.NUEVA) ...[
-              if (state == AppState.ABIERTA) Container(
+            if (state != AppWishState.NUEVA) ...[
+              if (state == AppWishState.ABIERTA) Container(
                 width: 200,
                 height: 40,
                 child: ElevatedButton(
@@ -73,7 +73,7 @@ class _StateDialogState extends State<StateDialog> {
                   child: Text("Iniciar"),
                 ),
               ),
-              if (state == AppState.ABIERTA) SizedBox(height: 10),
+              if (state == AppWishState.ABIERTA) SizedBox(height: 10),
               Container(
                 width: 200,
                 height: 40,

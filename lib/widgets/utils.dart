@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'widgets.dart';
 
 const MaterialColor MA_APP_COLOR = MaterialColor(
   _appPrimaryValue,
@@ -33,7 +33,7 @@ const List<String> APP_PROJECT_NAME = <String>[
   "Proyecto 4",
 ];
 
-enum AppState {
+enum AppWishState {
   NUEVA,
   ABIERTA,
   EN_PROCESO,

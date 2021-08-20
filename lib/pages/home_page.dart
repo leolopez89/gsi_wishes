@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gsi_wishes/bloc/app/app_bloc.dart';
 import 'package:gsi_wishes/models/wish.dart';
 import 'package:gsi_wishes/pages/creation_page.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
@@ -72,19 +74,29 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Lista de Deseos"),
-      ),
-      body: ListView(
-        children:
-            List.generate(wishes.length, (index) => WishItem(wishes[index])),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addTask,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+    return BlocBuilder<AppBloc, AppState>(builder: (_, state) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Text("Lista de Deseos"),
+              Spacer(),
+              Icon(Icons.person),
+              SizedBox(width: 5),
+              Text(state.user),
+            ],
+          ),
+        ),
+        body: ListView(
+          children:
+              List.generate(wishes.length, (index) => WishItem(wishes[index])),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _addTask,
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
+      );
+    });
   }
 }
