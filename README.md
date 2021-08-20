@@ -1,16 +1,27 @@
-# gsi_wishes
+# General Software Inc - Lista de Deseos
 
-A new Flutter project.
+Aplicación demostrativa para General Software Inc.
 
-## Getting Started
+Lista de Deseos colaborativa.
 
-This project is a starting point for a Flutter application.
+## Detalles de uso
 
-A few resources to get you started if this is your first Flutter project:
+La aplicación muestra tres tipos de usuarios
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Project Manager (PM)
+- Group Manager (GM)
+- Miembro (M)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Al iniciar se puede seleccionar el tipo de usuario con el que se va a trabajar.
+
+El Rol `PM` puede crear `Deseos`, así como asignarlos, iniciarlos y terminarlos.
+
+El Rol `GM` puede asignar `Deseos`, iniciarlos y termiarlos.
+
+El Rol `M` solo ve los `Deseos` que le han asignado, puede iniarlos y termiarlos.
+
+Los roles una vez terminados no se pueden modificar más.
+
+## Datos de prueba
+
+La aplicación cuenta con unos datos de prueba que pueden activarse en descomentando las lineas 11 y 17 en [app_bloc.dart](https://github.com/leolopez89/gsi_wishes/blob/master/lib/bloc/app/app_bloc.dart#L16-L17)

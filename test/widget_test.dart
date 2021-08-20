@@ -6,25 +6,70 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:gsi_wishes/bloc/app/app_bloc.dart';
 import 'package:gsi_wishes/main.dart';
+import 'package:gsi_wishes/pages/creation_page.dart';
+import 'package:gsi_wishes/pages/home_page.dart';
+import 'package:gsi_wishes/pages/users_page.dart';
+import 'package:mockito/mockito.dart';
+
+class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Check fist page', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that start page is user select.
+    expect(find.text('Seleccionar el usuario'), findsOneWidget);
+    expect(find.byType(UsersPage), findsOneWidget);
   });
+
+  testWidgets('Go to homepage as project manager', (WidgetTester tester) async {
+    final mockObserver = MockNavigatorObserver();
+
+    await tester.pumpWidget(BlocProvider(
+      create: (_) => AppBloc(),
+      child: MaterialApp(
+        home: UsersPage(),
+        navigatorObservers: [mockObserver],
+      ),
+    ));
+
+    await tester.tap(find.text("Project Manager"));
+    await tester.pumpAndSettle();
+    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(FloatingActionButton), findsOneWidget);
+
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+    expect(find.byType(CreationPage), findsOneWidget);
+  });
+
+    testWidgets('Go to homepage as group manager', (WidgetTester tester) async {
+    final mockObserver = MockNavigatorObserver();
+
+    await tester.pumpWidget(BlocProvider(
+      create: (_) => AppBloc(),
+      child: MaterialApp(
+        home: UsersPage(),
+        navigatorObservers: [mockObserver],
+      ),
+    ));
+
+    await tester.tap(find.text("Group Manager"));
+    await tester.pumpAndSettle();
+    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(FloatingActionButton), findsNothing);
+  });
+
+  testWidgets('Check members count', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(MyApp());
+
+    expect(find.textContaining('Member'), findsNWidgets(2));
+  });
+
 }

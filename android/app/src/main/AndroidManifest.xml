@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gsi_wishes">
    <application
-        android:label="gsi_wishes"
+        android:label="Lista de Deseos"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
