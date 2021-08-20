@@ -30,8 +30,6 @@ class _CreationPageState extends State<CreationPage> {
 
   _addWish() {
     final form = formKey.currentState;
-    print(wish.toString());
-
     if (form != null && form.validate()) {
       var uuid = Uuid();
       wish.id = uuid.v1();
@@ -113,12 +111,6 @@ class _CreationPageState extends State<CreationPage> {
                   controller: dateController,
                   validator: emptyValidator,
                 ),
-                // SectionTitle(title: "Estado"),
-                // DropdownSimple(
-                //   saveValue: (value) => setState(() => this.wish.state = value),
-                //   value: this.wish.state,
-                //   items: wishStateToList(),
-                // ),
                 SizedBox(height: 20),
                 Container(
                   constraints: BoxConstraints(maxWidth: 500),
