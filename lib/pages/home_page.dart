@@ -28,8 +28,9 @@ class _HomePageState extends State<HomePage> {
         current = state.wishes
             .where((element) => element.assigned == state.user)
             .toList();
-      } else
+      } else {
         current = state.wishes;
+      }
       return Scaffold(
         appBar: AppBar(
           title: Row(
@@ -39,7 +40,9 @@ class _HomePageState extends State<HomePage> {
               Icon(Icons.person),
               SizedBox(width: 5),
               Text(
-                state.user.contains("Project") ? "PM" : (state.user.contains("Group") ? "GM" : "M"),
+                state.user.contains("Project")
+                    ? "PM"
+                    : (state.user.contains("Group") ? "GM" : "M"),
                 overflow: TextOverflow.ellipsis,
               ),
             ],

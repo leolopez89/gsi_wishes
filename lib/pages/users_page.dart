@@ -36,14 +36,14 @@ class _UsersPageState extends State<UsersPage> {
         child: ListView(
           padding: EdgeInsets.all(50),
           children: List.generate(
-            APP_USERS.length,
+            appUsers.length,
             (index) => Container(
               width: 60,
               height: 40,
               margin: EdgeInsets.symmetric(vertical: 20),
               child: ElevatedButton(
-                onPressed: () => selectUser(APP_USERS[index]),
-                child: Text(APP_USERS[index]),
+                onPressed: () => selectUser(appUsers[index]),
+                child: Text(appUsers[index]),
               ),
             ),
           ),

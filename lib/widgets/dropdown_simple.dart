@@ -24,20 +24,20 @@ class DropdownSimple extends StatelessWidget {
       child: DropdownButtonFormField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15),
-          hintStyle: const TextStyle(color: C_APP_COLOR, fontSize: 15),
+          hintStyle: const TextStyle(color: cAppColor, fontSize: 15),
           fillColor: Colors.white,
           filled: true,
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: C_APP_COLOR),
+              borderSide: BorderSide(color: cAppColor),
               borderRadius: BorderRadius.circular(5)),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: C_APP_COLOR),
+              borderSide: BorderSide(color: cAppColor),
               borderRadius: BorderRadius.circular(5)),
           errorBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(5)),
           border: OutlineInputBorder(
-              borderSide: BorderSide(color: C_APP_COLOR),
+              borderSide: BorderSide(color: cAppColor),
               borderRadius: BorderRadius.circular(5)),
           errorMaxLines: 1,
           counterText: '',
@@ -53,9 +53,7 @@ class DropdownSimple extends StatelessWidget {
         ),
         onChanged: saveValue,
         validator: (value) {
-          if (validator != null) {
-            validator!(value);
-          }
+          if (validator != null) return validator!(value);
           return null;
         },
       ),

@@ -10,7 +10,7 @@ class StateDialog extends StatefulWidget {
 }
 
 class _StateDialogState extends State<StateDialog> {
-  String user = APP_USERS.firstWhere((element) => element.contains("Member"));
+  String user = appUsers.firstWhere((element) => element.contains("Member"));
   AppWishState state = AppWishState.NUEVA;
   String title = "Asignar Deseo";
   String section = "Seleccionar miembro";
@@ -74,7 +74,7 @@ class _StateDialogState extends State<StateDialog> {
         title,
         style: TextStyle(
           fontSize: 18,
-          color: MA_APP_COLOR.shade900,
+          color: maAppColor.shade900,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -87,7 +87,7 @@ class _StateDialogState extends State<StateDialog> {
               DropdownSimple(
                 saveValue: (value) => setState(() => user = value),
                 value: user,
-                items: APP_USERS
+                items: appUsers
                     .where((element) => element.contains("Member"))
                     .toList(),
               ),

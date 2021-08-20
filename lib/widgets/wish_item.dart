@@ -15,7 +15,7 @@ class WishItem extends StatelessWidget {
       // height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: MA_APP_COLOR.shade50,
+        color: maAppColor.shade50,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -50,7 +50,7 @@ class WishItem extends StatelessWidget {
                 this.wish.type,
                 style: TextStyle(
                   fontSize: 18,
-                  color: MA_APP_COLOR.shade900,
+                  color: maAppColor.shade900,
                   fontWeight: FontWeight.bold,
                 ),
               ),

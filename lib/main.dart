@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Lista de Deseos',
         theme: ThemeData(
-          primarySwatch: MA_APP_COLOR,
+          primarySwatch: maAppColor,
         ),
         // home: CreationPage(),
         home: UsersPage(),

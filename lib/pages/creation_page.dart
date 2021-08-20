@@ -21,10 +21,10 @@ class _CreationPageState extends State<CreationPage> {
   void initState() {
     super.initState();
     wish = new Wish(
-      type: APP_WISH_TYPE.first,
-      project: APP_PROJECT_NAME.first,
+      type: appWishType.first,
+      project: appProjectName.first,
       state: wishStateToList().first,
-      author: APP_USERS.firstWhere((element) => element.contains("Project")),
+      author: appUsers.firstWhere((element) => element.contains("Project")),
     );
   }
 
@@ -95,14 +95,14 @@ class _CreationPageState extends State<CreationPage> {
                 DropdownSimple(
                   saveValue: (value) => setState(() => this.wish.type = value),
                   value: this.wish.type,
-                  items: APP_WISH_TYPE,
+                  items: appWishType,
                 ),
                 SectionTitle(title: "Proyecto"),
                 DropdownSimple(
                   saveValue: (value) =>
                       setState(() => this.wish.project = value),
                   value: this.wish.project,
-                  items: APP_PROJECT_NAME,
+                  items: appProjectName,
                 ),
                 SectionTitle(title: "Fecha Límite"),
                 InputSimple(
