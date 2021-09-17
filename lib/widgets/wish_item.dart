@@ -12,14 +12,12 @@ class WishItem extends StatelessWidget {
         vertical: 10,
       ),
       padding: EdgeInsets.all(20),
-      // height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
         color: maAppColor.shade50,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -28,8 +26,6 @@ class WishItem extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-            // maxLines: 1,
-            // overflow: TextOverflow.ellipsis,
           ),
           SizedBox(
             height: 10,
@@ -125,12 +121,13 @@ class WishItem extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Container(
                   child: ElevatedButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => StateDialog(
-                        wish: this.wish,
-                      ),
-                    ),
+                    onPressed: () {
+                      Get.lazyPut(() => StateController());
+                      showDialog(
+                        context: context,
+                        builder: (context) => StateDialog(this.wish),
+                      );
+                    },
                     child: Text(
                       this.wish.state.toUpperCase(),
                       style: TextStyle(

@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gsi_wishes/bloc/app/app_bloc.dart';
-import 'package:gsi_wishes/pages/home_page.dart';
+import 'package:get/get.dart';
+import 'package:gsi_wishes/getx/app_controller.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
 
-class UsersPage extends StatefulWidget {
+class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
 
   @override
-  _UsersPageState createState() => _UsersPageState();
-}
-
-class _UsersPageState extends State<UsersPage> {
-  selectUser(String user) {
-    BlocProvider.of<AppBloc>(context).add(ChangeUser(user));
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
-  }
-
-  @override
-  void initState() {
-    BlocProvider.of<AppBloc>(context).add(LoadApp());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final AppController appController = Get.put(AppController());
+
+    _selectUser(String user) {
+      appController.updateUser(user);
+      Get.toNamed("/home");
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Seleccionar el usuario"),
@@ -42,7 +29,7 @@ class _UsersPageState extends State<UsersPage> {
               height: 40,
               margin: EdgeInsets.symmetric(vertical: 20),
               child: ElevatedButton(
-                onPressed: () => selectUser(appUsers[index]),
+                onPressed: () => _selectUser(appUsers[index]),
                 child: Text(appUsers[index]),
               ),
             ),

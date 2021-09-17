@@ -1,7 +1,7 @@
 part of 'widgets.dart';
 
 class InputSimple extends StatelessWidget {
-  final ValueSetter saveValue;
+  final ValueSetter? saveValue;
   final int minLines;
   final int maxLines;
   final String? Function(String?)? validator;
@@ -9,7 +9,7 @@ class InputSimple extends StatelessWidget {
   final TextEditingController? controller;
 
   const InputSimple({
-    required this.saveValue,
+    this.saveValue,
     this.minLines = 1,
     this.maxLines = 1,
     this.validator,

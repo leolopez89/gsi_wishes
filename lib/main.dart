@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gsi_wishes/bloc/app/app_bloc.dart';
+import 'package:get/get.dart';
+import 'package:gsi_wishes/getx/creation_controller.dart';
+import 'package:gsi_wishes/pages/creation_page.dart';
+import 'package:gsi_wishes/pages/home_page.dart';
 import 'package:gsi_wishes/pages/users_page.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
 
@@ -10,28 +12,33 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => AppBloc(),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Lista de Deseos',
+      theme: ThemeData(
+        primarySwatch: maAppColor,
+      ),
+      initialRoute: '/users',
+      getPages: [
+        GetPage(
+          name: '/users',
+          page: () => UsersPage(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => HomePage(),
+        ),
+        GetPage(
+          name: '/creation',
+          page: () => CreationPage(),
+          binding: CreationBinding(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Lista de Deseos',
-        theme: ThemeData(
-          primarySwatch: maAppColor,
-        ),
-        // home: CreationPage(),
-        home: UsersPage(),
-        // home: HomePage(),
-      ),
     );
   }
 }

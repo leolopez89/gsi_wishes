@@ -1,74 +1,18 @@
 part of 'widgets.dart';
 
-class StateDialog extends StatefulWidget {
+class StateDialog extends StatelessWidget {
   final Wish wish;
 
-  const StateDialog({Key? key, required this.wish}) : super(key: key);
-
-  @override
-  _StateDialogState createState() => _StateDialogState();
-}
-
-class _StateDialogState extends State<StateDialog> {
-  String user = appUsers.firstWhere((element) => element.contains("Member"));
-  AppWishState state = AppWishState.NUEVA;
-  String title = "Asignar Deseo";
-  String section = "Seleccionar miembro";
-
-  @override
-  void initState() {
-    super.initState();
-    state = stringToWishState(this.widget.wish.state);
-    title = state == AppWishState.NUEVA ? "Asignar Deseo" : "Cambiar estado";
-  }
-
-  _toAssingWish() {
-    BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
-      id: widget.wish.id,
-      title: widget.wish.title,
-      description: widget.wish.description,
-      type: widget.wish.type,
-      project: widget.wish.project,
-      date: widget.wish.date,
-      assigned: user,
-      author: widget.wish.author,
-      state: wishStateToString(AppWishState.ABIERTA),
-    )));
-    Navigator.pop(context);
-  }
-
-  _toStartWish() {
-    BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
-      id: widget.wish.id,
-      title: widget.wish.title,
-      description: widget.wish.description,
-      type: widget.wish.type,
-      project: widget.wish.project,
-      date: widget.wish.date,
-      assigned: widget.wish.assigned,
-      author: widget.wish.author,
-      state: wishStateToString(AppWishState.EN_PROCESO),
-    )));
-    Navigator.pop(context);
-  }
-
-  _toEndWish() {
-    BlocProvider.of<AppBloc>(context).add(UpdateWishState(Wish(
-      id: widget.wish.id,
-      title: widget.wish.title,
-      description: widget.wish.description,
-      type: widget.wish.type,
-      project: widget.wish.project,
-      date: widget.wish.date,
-      assigned: widget.wish.assigned,
-      author: widget.wish.author,
-      state: wishStateToString(AppWishState.CERRADA),
-    )));
-    Navigator.pop(context);
-  }
+  const StateDialog(this.wish, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final StateController controller = Get.put(StateController());
+    controller.wish = wish;
+
+    final AppWishState wishState = controller.wishState();
+    final String title = controller.title();
+
     return new SimpleDialog(
       title: new Text(
         title,
@@ -82,46 +26,45 @@ class _StateDialogState extends State<StateDialog> {
         Container(
           margin: EdgeInsets.all(20),
           child: Column(children: [
-            if (state == AppWishState.NUEVA) ...[
+            if (wishState == AppWishState.NUEVA) ...[
               SectionTitle(title: "Seleccionar miembro"),
               DropdownSimple(
-                saveValue: (value) => setState(() => user = value),
-                value: user,
-                items: appUsers
-                    .where((element) => element.contains("Member"))
-                    .toList(),
+                saveValue: controller.setUser,
+                value: controller.user,
+                items: controller.users,
               ),
               SizedBox(height: 30),
               Container(
                 width: 200,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: _toAssingWish,
+                  onPressed: controller.toAssingWish,
                   child: Text("Asignar deseo"),
                 ),
               ),
             ],
-            if (state != AppWishState.NUEVA) ...[
-              if (state == AppWishState.ABIERTA)
+            if (wishState != AppWishState.NUEVA) ...[
+              if (wishState == AppWishState.ABIERTA)
                 Container(
                   width: 200,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: _toStartWish,
+                    onPressed: controller.toStartWish,
                     child: Text("Iniciar"),
                   ),
                 ),
-              if (state == AppWishState.ABIERTA) SizedBox(height: 10),
-              if (state != AppWishState.CERRADA) Container(
-                width: 200,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: _toEndWish,
-                  child: Text("Terminar"),
+              if (wishState == AppWishState.ABIERTA) SizedBox(height: 10),
+              if (wishState != AppWishState.CERRADA)
+                Container(
+                  width: 200,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: controller.toEndWish,
+                    child: Text("Terminar"),
+                  ),
                 ),
-              ),
             ],
-            if (state == AppWishState.CERRADA) Text("La tarea ya está cerrada.")
+            if (wishState == AppWishState.CERRADA) Text("La tarea ya está cerrada.")
           ]),
         )
       ],
