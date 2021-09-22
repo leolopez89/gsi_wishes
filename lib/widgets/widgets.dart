@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:get/get.dart';
-import 'package:gsi_wishes/getx/state_controller.dart';
+import 'package:gsi_wishes/getx/app_controller.dart';
 import 'package:gsi_wishes/models/wish.dart';
 
 part 'dropdown_simple.dart';

@@ -2,16 +2,14 @@ part of 'widgets.dart';
 
 class StateDialog extends StatelessWidget {
   final Wish wish;
+  final AppController ctrl;
 
-  const StateDialog(this.wish, {Key? key}) : super(key: key);
+  const StateDialog(this.wish, this.ctrl, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final StateController controller = Get.put(StateController());
-    controller.wish = wish;
-
-    final AppWishState wishState = controller.wishState();
-    final String title = controller.title();
+    final AppWishState wishState = ctrl.wishState(wish.state);
+    final String title = ctrl.title(wish.state);
 
     return new SimpleDialog(
       title: new Text(
@@ -29,16 +27,16 @@ class StateDialog extends StatelessWidget {
             if (wishState == AppWishState.NUEVA) ...[
               SectionTitle(title: "Seleccionar miembro"),
               DropdownSimple(
-                saveValue: controller.setUser,
-                value: controller.user,
-                items: controller.users,
+                saveValue: ctrl.setUser,
+                value: ctrl.selectedUser,
+                items: ctrl.users,
               ),
               SizedBox(height: 30),
               Container(
                 width: 200,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: controller.toAssingWish,
+                  onPressed: () => ctrl.toAssingWish(wish),
                   child: Text("Asignar deseo"),
                 ),
               ),
@@ -49,7 +47,7 @@ class StateDialog extends StatelessWidget {
                   width: 200,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: controller.toStartWish,
+                    onPressed: () => ctrl.toStartWish(wish),
                     child: Text("Iniciar"),
                   ),
                 ),
@@ -59,12 +57,13 @@ class StateDialog extends StatelessWidget {
                   width: 200,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: controller.toEndWish,
+                    onPressed: () => ctrl.toEndWish(wish),
                     child: Text("Terminar"),
                   ),
                 ),
             ],
-            if (wishState == AppWishState.CERRADA) Text("La tarea ya está cerrada.")
+            if (wishState == AppWishState.CERRADA)
+              Text("La tarea ya está cerrada.")
           ]),
         )
       ],

@@ -2,7 +2,8 @@ part of 'widgets.dart';
 
 class WishItem extends StatelessWidget {
   final Wish wish;
-  const WishItem(this.wish, {Key? key}) : super(key: key);
+  final AppController ctrl;
+  const WishItem(this.wish, this.ctrl, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -122,10 +123,12 @@ class WishItem extends StatelessWidget {
                 child: Container(
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.lazyPut(() => StateController());
                       showDialog(
                         context: context,
-                        builder: (context) => StateDialog(this.wish),
+                        builder: (context) {
+                          ctrl.prepareUser();
+                          return StateDialog(wish, ctrl);
+                        },
                       );
                     },
                     child: Text(

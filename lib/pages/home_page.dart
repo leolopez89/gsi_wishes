@@ -29,7 +29,7 @@ class HomePage extends GetView<AppController> {
       ),
       body: Obx(() => ListView(
             children: List.generate(controller.userWidgets().length,
-                (index) => WishItem(controller.userWidgets()[index])),
+                (index) => WishItem(controller.userWidgets()[index], controller)),
           )),
       floatingActionButton: controller.showAction()
           ? FloatingActionButton(
