@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gsi_wishes/getx/app_controller.dart';
+import 'package:gsi_wishes/getx/home_controller.dart';
 import 'package:gsi_wishes/models/wish.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
 import 'package:uuid/uuid.dart';
@@ -65,7 +65,7 @@ class CreationController extends GetxController {
       wish.description = descriptionController.text;
       var uuid = Uuid();
       wish.id = uuid.v1();
-      final appController = Get.find<AppController>();
+      final appController = Get.find<HomeController>();
       appController.addWish(wish);
       Get.back();
     }
@@ -76,6 +76,6 @@ class CreationBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => CreationController());
-    Get.lazyPut(() => AppController());
+    Get.lazyPut(() => HomeController());
   }
 }

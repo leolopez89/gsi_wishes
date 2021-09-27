@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class StateDialog extends StatelessWidget {
   final Wish wish;
-  final AppController ctrl;
+  final HomeController ctrl;
 
   const StateDialog(this.wish, this.ctrl, {Key? key}) : super(key: key);
 

@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class WishItem extends StatelessWidget {
   final Wish wish;
-  final AppController ctrl;
+  final HomeController ctrl;
   const WishItem(this.wish, this.ctrl, {Key? key}) : super(key: key);
 
   @override

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:gsi_wishes/models/wish.dart';
 import 'package:gsi_wishes/widgets/widgets.dart';
 
-class AppController extends GetxController {
+class HomeController extends GetxController {
   var wishes = <Wish>[].obs;
   var user = "".obs;
   String selectedUser = "";
@@ -21,14 +21,17 @@ class AppController extends GetxController {
   void updateWish(Wish wish) {
     int index = wishes.indexWhere((w) => w.id == wish.id);
     wishes[index] = wish;
+    update();
   }
 
   void addWish(Wish wish) {
     wishes.add(wish);
+    update();
   }
 
   void updateUser(String user) {
     this.user.value = user;
+    update();
   }
 
   List<Wish> userWidgets() => user.contains("Member")
@@ -53,22 +56,22 @@ class AppController extends GetxController {
   toAssingWish(Wish wish) {
     wish.state = wishStateToString(AppWishState.ABIERTA);
     wish.assigned = selectedUser;
-    final appController = Get.find<AppController>();
-    appController.updateWish(wish);
+    final homeController = Get.find<HomeController>();
+    homeController.updateWish(wish);
     Get.back();
   }
 
   toStartWish(Wish wish) {
     wish.state = wishStateToString(AppWishState.EN_PROCESO);
-    final appController = Get.find<AppController>();
-    appController.updateWish(wish);
+    final homeController = Get.find<HomeController>();
+    homeController.updateWish(wish);
     Get.back();
   }
 
   toEndWish(Wish wish) {
     wish.state = wishStateToString(AppWishState.CERRADA);
-    final appController = Get.find<AppController>();
-    appController.updateWish(wish);
+    final homeController = Get.find<HomeController>();
+    homeController.updateWish(wish);
     Get.back();
   }
 
