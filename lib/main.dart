@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:gsi_wishes/pages/navigation.dart';
-import 'package:gsi_wishes/widgets/widgets.dart';
+import 'package:gsi_wishes/core/navigation/index.dart';
+import 'package:gsi_wishes/presentation/core/resources/index.dart';
 
 void main() {
   runApp(MyApp());

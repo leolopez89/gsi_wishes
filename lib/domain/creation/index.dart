@@ -1,0 +1,1 @@
+export './bindings/index.dart';

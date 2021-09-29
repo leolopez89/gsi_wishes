@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gsi_wishes/main.dart';
-import 'package:gsi_wishes/pages/users_page.dart';
+import 'package:gsi_wishes/presentation/users/index.dart';
 import 'package:mockito/mockito.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
